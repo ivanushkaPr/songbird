@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
+import image from './bird-mock.jpg';
 const BirdImage = styled.img`
   border-radius: 10px;
   max-height: 155px;
@@ -8,8 +8,11 @@ const BirdImage = styled.img`
 
 export default class Question extends Component {
   render() {
+    const source = this.props.source ? this.props.source : image;
     return (
-      <BirdImage src={this.props.source}/>
+
+
+      <BirdImage src={source}/>
     )
   }
 }

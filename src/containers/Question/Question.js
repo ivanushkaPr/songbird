@@ -35,11 +35,19 @@ const BirdName = styled.h3`
 
 export default class Question extends Component {
   render() {
+    console.log(this.props.answer, 'have answer')
+   
+    if(this.props.answer) {
+      var { image, name } = this.props.answer;
+    }
     return (
       <Container>
-        <BirdImage/>
+        <BirdImage source={image}/>
         <Wrapper>
-          <BirdName> ****** </BirdName>
+          <BirdName> 
+            {
+            name ? name :  '******'
+            }  </BirdName>
           <Slider width={'735px'}/>
         </Wrapper>
       </Container>

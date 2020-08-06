@@ -15,7 +15,7 @@ const Panel = styled.div`
 `;
 
 const Logo = styled.div`
-  background-image: url(${logo});
+  background-image: url(${props => props.source});
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -65,10 +65,12 @@ const Link = styled.a`
 
 export default class Header extends Component {
   render() {
+
+
     return (
       <Container>
         <Panel>
-          <Logo/>
+          <Logo source={logo}/>
           <Score> 
             Score:
             <Points> 0</Points>

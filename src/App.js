@@ -43,10 +43,8 @@ class App extends Component {
     const idToIndex = idToNumber - 1;
     console.log(e.currentTarget.id, this.state.question);
     if(idToIndex === this.state.question) {
-      console.log('You choose right');
-      console.log(this.state.data[0][this.state.question], this.state.data[0][idToIndex]);
       this.onGuess(idToIndex);
-    } else {
+    } else if(!this.state.guess) {
       const newTries = [...this.state.tries];
       newTries[idToIndex] = true;
       this.setState({
@@ -54,9 +52,12 @@ class App extends Component {
         tries: newTries,
         choosen: idToIndex
       })
+    } else {
+      this.setState({
+        ...this.state,
+        choosen: idToIndex
+      })
     }
-
-  
   }
 
   onGuess = (id) => {
@@ -73,19 +74,35 @@ class App extends Component {
     })
   }
 
+  onNextButtonClickHanlder = e => {
+    console.log(this.state.guess);
+    if(this.state.guess !== null) {
+      console.log('next button is clicked');
+      const nextRound = this.state.stage + 1;
+      this.setState({
+        ...this.state,
+        stage: nextRound,
+        tries: [false, false, false, false, false, false],
+        guess: null,
+        question: this.getRandomInt(0, 5),
+        choosen: null,
+      })
+    }
+  }
+
   render() {
 
-    const {stage, choosen, data } = this.state;
-
+    const {stage, choosen, data,  guess, tries } = this.state;
+    const correctAnswer = data[stage - 1][guess];
     return (
       <div className="App">
-        <Header stage={this.state.stage - 1}/>
-        <Question/>
+        <Header stage={stage - 1}/>
+        <Question answer={correctAnswer}/>
         <Container>
-          <Answers success={this.state.guess} tries={this.state.tries} click={this.onTicketClickHandler} tickets={this.state.data[this.state.stage - 1]}/>
+          <Answers success={guess} tries={tries} click={this.onTicketClickHandler} tickets={data[stage - 1]}/>
           <Information data={data[stage - 1][choosen]}/>
         </Container>
-        <NextButton/>
+        <NextButton click={this.onNextButtonClickHanlder} success={guess}/>
       </div>
     );
   }

@@ -8,7 +8,7 @@ const Next = styled.button`
   width: 100%;
   margin-top: 25px;
   display: block;
-  background-color: #00bc8c;
+  background-color: ${props => typeof props.success === 'number' ? '#00bc8c' : '#303030'};
   border: none;
   padding: 10px 12px;
   font-size: 15px;
@@ -21,7 +21,7 @@ export default class NextButton extends Component {
   render() {
     return (
       <Container>
-        <Next>
+        <Next onClick={this.props.click} success={this.props.success}>
           Next Level
         </Next>
       </Container>
