@@ -22,18 +22,22 @@ margin: 3px 0px;
 export default class Information extends Component {
   render() {
 
-    const instr = (
+    let content = (
       <>
       <Instruction> Послушайте плеер </Instruction>
       <Instruction> Выберите птицу из списка </Instruction>
       </>
     )
+    if(this.props.data) {
+      content = (
+          <Bird data={this.props.data}/>
+      )
+    }
     return (
       <Container>
-        <Bird/>
-
-        
+          {content}
       </Container>
+     
     )
   }
 }

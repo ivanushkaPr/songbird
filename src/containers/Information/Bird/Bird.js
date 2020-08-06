@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import BirdImage from '../../BirdImage/BirdImage';
-import Snegir from './snegir.jpg';
 import Slider from '../../Slider/Slider';
 
 const Container = styled.div`
@@ -58,20 +57,22 @@ const Description = styled.p`
 
 export default class Information extends Component {
   render() {
+    console.log(this.props.data, 'bird');
+    const {name, species, description, image} = this.props.data;
     return (
       <Container>
         <Wrapper>
-        <BirdImage src={Snegir}/>
+        <BirdImage source={image}/>
         <Group>
           <GroupMember>
             <BirdName>
-              Ворон
+              { name }
             </BirdName>
           </GroupMember>
 
           <GroupMember>
             <BirdTerm>
-            Corvus corax
+            {species}
             </BirdTerm>
           </GroupMember>
 
@@ -83,10 +84,7 @@ export default class Information extends Component {
         </Wrapper>
  
         <Description>
-        Ворон – крупная птица. Длина тела достигает 70 сантиметров, размах 
-        крыльев – до полутора метров. Вороны населяют окрестности Тауэра. В
-        Англии бытует поверье, что в день, когда черные вороны улетят от
-        Тауэра, монархия рухнет.
+        {description}
         
         </Description>
          

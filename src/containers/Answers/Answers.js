@@ -27,7 +27,7 @@ border-radius: ${props => props.border ? props.border : null};
 const Indicator = styled.div`
 width: 10px;
 height: 10px;
-background-color: ${props => props.error ? '#d62c1a' : props.success ? '#00bc8c' : '#444'};
+background-color: ${props => props.error === true ? '#d62c1a' : props.success ? '#00bc8c' : '#444'};
 border-radius: 5px;
 margin-right: 15px;
 }`;
@@ -39,12 +39,18 @@ const Name = styled.p`
 `;
 
 export default class Variants extends Component {
+
+  onClickHandler = (e) => {
+    this.props.click(e);
+  }
+
   render () {
+    console.log(this.props);
     return (
       <Container>
         <Answers>
         {
-          ['Птица ', 'Птица ', 'Птица ', 'Птица ', 'Птица ', 'Птица '].map((element, index, array) => {
+          this.props.tickets.map((ticket, index, array) => {
             let border = '';
             if(index === 0) {
               border =  '5px 5px 0px 0px';
@@ -53,12 +59,12 @@ export default class Variants extends Component {
               border = '0px 0px 5px 5px';
             }
 
-            console.log(border);
-
+            
+            const success = this.props.success === index;
             return (
-              <Answer  border={border} key={index}>
-                <Indicator/>
-                <Name> { element } </Name>
+              <Answer onClick={this.onClickHandler} border={border} id={ticket.id} key={ticket.id}>
+                <Indicator success={success} error={this.props.tries[index]}/>
+                <Name> { ticket.name } </Name>
               </Answer>
             );
           })

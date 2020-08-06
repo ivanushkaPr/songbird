@@ -52,7 +52,7 @@ const Category = styled.li`
   flex: auto;
   list-style-type: none;
   padding: 8px 12px;
-  background-color: #008966;
+  background-color: ${props => props.active ? ' #00bc8c;' : '#008966'};
   border-color: #007c5d;
   text-align: center;
 `;
@@ -78,8 +78,9 @@ export default class Header extends Component {
          <Navigation>
            <Menu>
              {['Разминка', 'Воробьиные', 'Лесные птицы', 'Певчие птицы', 'Хищные птицы', 'Морские птицы'].map((el, index, array) => {
+               const active = this.props.stage === index ? true : false;
                return (
-                <Category key={index+el}>
+                <Category active={active} key={index+el}>
                   <Link>
                   {el}
                   </Link>
