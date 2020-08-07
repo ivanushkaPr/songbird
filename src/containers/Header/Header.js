@@ -66,21 +66,20 @@ const Link = styled.a`
 export default class Header extends Component {
   render() {
 
-
     return (
       <Container>
         <Panel>
           <Logo source={logo}/>
           <Score> 
             Score:
-            <Points> 0</Points>
+            {this.props.score}
           </Score>
         </Panel>
 
          <Navigation>
            <Menu>
              {['Разминка', 'Воробьиные', 'Лесные птицы', 'Певчие птицы', 'Хищные птицы', 'Морские птицы'].map((el, index, array) => {
-               const active = this.props.stage === index ? true : false;
+               const active = (this.props.stage - 1) === index ? true : false;
                return (
                 <Category active={active} key={index+el}>
                   <Link>

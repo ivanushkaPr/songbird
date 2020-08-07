@@ -19,23 +19,32 @@ const PlayerWrapper = styled.div`
   margin-left: 14px;
 `;
 
+const Audio = styled.audio`
+display: none;
+`;
+
 const PlayButton = styled.button`
   background-color: transparent;
   height: 40px;
   width: 40px;
   border-radius: 50%;
   border: 2px solid #00bc8c;
-  background-image: url(${Play});
+  background-image: url(${props => props.playing ? Pause : Play});
   background-position: center;
   background-repeat: no-repeat;
   background-size: 18px 18px;
 `;
 
+const Bar = styled.div`
+  min-width: ${props => props.width};
+  height: 4px;
+  position: relative;
+  background-color: rgb(115, 115, 115);
+  `;
+
 const Progress = styled.div`
   min-width: ${props => props.width};
   height: 4px;
-  background: linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) 0%, rgb(115, 115, 115) 0%, rgb(115, 115, 115) 100%);
-  position: relative;
 `;
 
 const Runner = styled.div`
@@ -71,21 +80,42 @@ const Time = styled.p`
 `;
 
 export default class Slider extends Component {
+  constructor(props) {
+    super(props);
+    this.runnerRef = React.createRef();
+
+  }
+
+  onLoadAudioHandler = e => {
+    const duration = Math.floor(e.target.duration);
+    const Target = e.target.nextElementSibling.nextElementSibling.lastChild.lastChild;
+    const minutes = parseInt(duration / 60);
+    const seconds = String(duration - minutes * 60);
+
+    const output = seconds.length === 1 ? `0` + minutes + ':0' + seconds : `0` + minutes + ':' + seconds
+    Target.innerHTML = output;
+  }
+
   render() {
     return (
       <Player>
-          <PlayButton active={this.props.active}> </PlayButton>
-            <PlayerWrapper>
-              <Progress width={this.props.width}>
-                <Runner/>
-              </Progress>
-              <TimeContainer>
-                <Time> 00.00 </Time>
-                <Time> 00.12 </Time>
-              </TimeContainer>
+        <Audio onLoadedMetadata={this.onLoadAudioHandler} onTimeUpdate={this.props.update} ref={this.props.audioReference} controls src={this.props.audio}>
 
-            </PlayerWrapper>
-          </Player>
+        </Audio>
+        <PlayButton onClick={this.props.click} playing={this.props.playing}> </PlayButton>
+        <PlayerWrapper>
+          <Bar width={this.props.width}>
+            <Progress ref={this.props.progressReference} />
+            <Runner  onMouseDown={this.props.drag} ref={this.runnerRef}/>
+          </Bar>
+          
+          <TimeContainer>
+            <Time> 00.00 </Time>
+            <Time> 00.00 </Time>
+          </TimeContainer>
+
+        </PlayerWrapper>
+      </Player>
     )
   }
 }

@@ -45,7 +45,6 @@ export default class Variants extends Component {
   }
 
   render () {
-    console.log(this.props);
     return (
       <Container>
         <Answers>

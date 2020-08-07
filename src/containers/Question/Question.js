@@ -12,8 +12,6 @@ const Container = styled.div`
   justify-content: space-between;    margin-bottom: 25px;
 `;
 
-
-
 const Wrapper = styled.div`
   flex-grow: 1;
   text-align: left;
@@ -35,11 +33,10 @@ const BirdName = styled.h3`
 
 export default class Question extends Component {
   render() {
-    console.log(this.props.answer, 'have answer')
-   
     if(this.props.answer) {
-      var { image, name } = this.props.answer;
+      var { image, name} = this.props.answer;
     }
+    const { progressReference, audioReference, click, update } = this.props; 
     return (
       <Container>
         <BirdImage source={image}/>
@@ -48,7 +45,16 @@ export default class Question extends Component {
             {
             name ? name :  '******'
             }  </BirdName>
-          <Slider width={'735px'}/>
+          
+          <Slider
+            update={update}
+            click={click}
+            drag={this.props.drag}
+            progressReference={progressReference}
+            audioReference={audioReference}
+            playing={this.props.playing}
+            audio={this.props.audio}
+            width={'735px'}/>
         </Wrapper>
       </Container>
     )
