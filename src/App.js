@@ -105,10 +105,7 @@ class App extends Component {
     return parseInt(getComputedStyle(progressRef.current).width) / 100 * time;
   }
 
-  
-
   onAudioTimeUpdate = (e, progressRef) => { 
-    console.log(progressRef, 'reference');
     const { getTime, calcProgWidth, onFormatTimeOutput } = this;
 
     if(!this.dragging) {
@@ -116,7 +113,8 @@ class App extends Component {
       this.changeRunnerPosition( calcProgWidth(getTime(e.target), progressRef), progressRef)
     }
     
-    const currentTimeElement = e.target.nextElementSibling.nextElementSibling.lastChild.firstChild;
+    const currentTimeElement = e.target.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.firstChild;
+    
     currentTimeElement.innerHTML = onFormatTimeOutput(e.target.currentTime);
   }
 
@@ -129,18 +127,68 @@ class App extends Component {
     progressRef.current.nextElementSibling.style.left = width + 'px';
   }
 
+  onVolumeChange = (audio) => {
+    
+  }
+
+  calcVolumeLevel = (audio) => {
+    const parent = this.volumeEl.getBoundingClientRect();
+    const child = this.volumeEl.firstChild.getBoundingClientRect();
+
+    const parentWidth = parent.width;
+    const childWidth = child.width;
+
+    const volumeLevel = childWidth / parentWidth;
+    audio.current.volume = volumeLevel;
+    console.log(audio.current.volume)
+  }
+
+  onAudioChangeHandler = (e, audioRef) => {
+    this.volumeEl = e.currentTarget;
+
+    const moveAt = (pageX) => {
+      const child = this.volumeEl.firstElementChild;
+      const volumeElCoords = this.volumeEl.getBoundingClientRect()
+      let level = pageX - volumeElCoords.left;
+      const maxWidth = volumeElCoords.right - volumeElCoords.x
+
+
+      level =  pageX < volumeElCoords.left ?  0 : pageX > volumeElCoords.right ? volumeElCoords.width : level;
+      console.log(level, 'level is');
+      child.style.width = level < maxWidth  ? level + 'px' : volumeElCoords.width;
+
+      this.calcVolumeLevel(audioRef);
+    }
+
+    const mouseMove = (e) => {
+      moveAt(e.pageX)
+    }
+
+    const mouseUp = () => {
+      document.removeEventListener('mousemove', mouseMove);
+      document.removeEventListener('mouseup', mouseUp);
+      this.volumeEl = null;
+    }
+
+
+
+    document.addEventListener('mousemove', mouseMove);
+    document.addEventListener('mouseup', mouseUp);
+    moveAt(e.pageX);
+
+    
+  }
 
   getRandomInt = (min, max) => {
       // случайное число от min до (max+1)
       let rand = min + Math.random() * (max + 1 - min);
       return Math.floor(rand);
-    }
-  
+  }
 
   onTicketClickHandler = (e) => {
     const idToNumber = Number(e.currentTarget.id);
     const idToIndex = idToNumber - 1;
-    if(idToIndex === this.state.question) {
+    if(idToIndex === this.state.question && !this.state.guess) {
       this.rightRef.current.play();
       this.onGuess(idToIndex);
     } else if(!this.state.guess && this.state.tries[idToIndex] === false) {
@@ -257,15 +305,6 @@ class App extends Component {
     }
 
     document.addEventListener('mouseup', mouseUp);
-    console.log(this.audioRef.current, 'our audio player')
-
-  }
-
-
-
-
-  mouseUp = e => {
-
   }
 
   render() {
@@ -292,6 +331,7 @@ class App extends Component {
             answer={correctAnswer} 
             playing={playing}
             id={'playing'}
+            volume={this.onAudioChangeHandler}
             />
             
           <Container>
@@ -304,6 +344,7 @@ class App extends Component {
             progressReference={this.progressRef2}
             playing={playing2}
             id={'playing2'}
+            volume={this.onAudioChangeHandler}
             data={data[stage - 1][choosen]}/>
           </Container>
           <NextButton click={this.onNextButtonClickHanlder} success={guess}/>

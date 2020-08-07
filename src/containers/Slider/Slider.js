@@ -77,11 +77,19 @@ const Time = styled.p`
   line-height:16.5px;
 `;
 
-export default class Slider extends Component {
+const Volume = styled.div`
+  width: 200px;
+  height: 4px;
+`;
+const Level = styled.div`
+  width: 200px;
+  height: 4px;
+  background-color: lightgreen`;
 
+export default class Slider extends Component {
   onLoadAudioHandler = e => {
     const duration = Math.floor(e.target.duration);
-    const Target = e.target.nextElementSibling.nextElementSibling.lastChild.lastChild;
+    const Target = e.target.nextElementSibling.nextElementSibling.lastChild.previousElementSibling.lastChild;
     const minutes = parseInt(duration / 60);
     const seconds = String(duration - minutes * 60);
 
@@ -90,6 +98,7 @@ export default class Slider extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <Player>
         <Audio 
@@ -111,6 +120,7 @@ export default class Slider extends Component {
         />
 
         <PlayerWrapper>
+          
           <Bar width={this.props.width}>
             <Progress ref={this.props.progressReference} />
             <Runner onMouseDown={
@@ -125,7 +135,9 @@ export default class Slider extends Component {
             <Time> 00.00 </Time>
             <Time> 00.00 </Time>
           </TimeContainer>
-
+          <Volume onMouseDown={(e) =>{ this.props.volume(e, this.props.audioReference)}}>
+            <Level/>
+        </Volume>
         </PlayerWrapper>
       </Player>
     )
