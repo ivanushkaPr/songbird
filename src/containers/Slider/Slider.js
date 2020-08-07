@@ -20,8 +20,8 @@ const PlayerWrapper = styled.div`
 `;
 
 const Audio = styled.audio`
-display: none;
-`;
+  display: none;
+  `;
 
 const PlayButton = styled.button`
   background-color: transparent;
@@ -57,8 +57,6 @@ const Runner = styled.div`
   top: -6px;
 `;
 
-
-
 const TimeContainer =  styled.div`
   display: flex;
   margin-left: 7px;
@@ -80,11 +78,6 @@ const Time = styled.p`
 `;
 
 export default class Slider extends Component {
-  constructor(props) {
-    super(props);
-    this.runnerRef = React.createRef();
-
-  }
 
   onLoadAudioHandler = e => {
     const duration = Math.floor(e.target.duration);
@@ -99,21 +92,33 @@ export default class Slider extends Component {
   render() {
     return (
       <Player>
-        <Audio onLoadedMetadata={this.onLoadAudioHandler} onTimeUpdate={this.props.update} ref={this.props.audioReference} controls src={this.props.audio}>
+        <Audio 
+        onLoadedMetadata={this.onLoadAudioHandler} 
+        onTimeUpdate={
+          (e) => {
+            const progressRef=this.props.progressReference;
+            this.props.update(e, progressRef)}} 
+        ref={this.props.audioReference} 
+        controls src={this.props.audio}/>
 
-        </Audio>
-        <PlayButton 
-        onClick={(e) => {
-          const ref = this.props.audioReference, 
-          playing=this.props.id; 
-          this.props.click(e, ref, playing)}}
+        
+       <PlayButton 
+          onClick={(e) => {
+            const ref = this.props.audioReference, 
+            playing=this.props.id; 
+            this.props.click(e, ref, playing)}}
           playing={this.props.playing}
         />
 
         <PlayerWrapper>
           <Bar width={this.props.width}>
             <Progress ref={this.props.progressReference} />
-            <Runner onMouseDown={this.props.drag} ref={this.runnerRef}/>
+            <Runner onMouseDown={
+              (e) => {
+                console.log(e.target, 'e.target from arrow function')
+                const progressRef= this.props.progressReference,
+                audioRef=this.props.audioReference;
+                this.props.drag(e, progressRef, audioRef)}}/>
           </Bar>
           
           <TimeContainer>

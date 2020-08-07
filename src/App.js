@@ -8,21 +8,31 @@ import styled from 'styled-components';
 import NextButton from './components/NextButton/Nextbutton';
 import birdsData from './birdsData';
 import Confragulations from './components/Confragulations/Confragulations';
+import wrong from './sounds/wrong.mp3';
+import right from './sounds/right.mp3';
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
+const Wrong = styled.audio`
+  display: none`;
+
+const Right = styled.audio`
+  display: none`;
+
 class App extends Component {
   constructor(props) {
     super(props);
+    this.rightRef= React.createRef();
+    this.wrongRef= React.createRef();
     this.audioRef = React.createRef();
     this.progressRef = React.createRef();
     this.audioRef2 = React.createRef();
     this.progressRef2 = React.createRef();
     this.state = {
-      stage: 6,
+      stage: 1,
       attempt: 1,
       attempts: 0,
       tries: [false, false, false, false, false, false],
@@ -39,8 +49,6 @@ class App extends Component {
 
 
   onPlayButtonHandler = (e, ref, prop) => {
-    console.log('handler fired')
-
     const playing = this.state[prop];
     const newState = {
       [prop]: !playing
@@ -74,11 +82,11 @@ class App extends Component {
 
 
 
-  calcProgressWidth = () => {
+  calcProgressWidth = (progressRef) => {
     const progressWidth =  this.runner.getBoundingClientRect().left
-      - this.progressRef.current.getBoundingClientRect().left;
+      - progressRef.current.getBoundingClientRect().left;
 
-    return progressWidth / (parseInt(getComputedStyle(this.progressRef.current).width) / 100);
+    return progressWidth / (parseInt(getComputedStyle(progressRef.current).width) / 100);
   }
 
   widthToTime = (audio, width) => {
@@ -93,18 +101,19 @@ class App extends Component {
 
   }
 
-  calcProgWidth = (time) => {
-    return parseInt(getComputedStyle(this.progressRef.current).width) / 100 * time;
+  calcProgWidth = (time, progressRef) => {
+    return parseInt(getComputedStyle(progressRef.current).width) / 100 * time;
   }
 
   
 
-  onAudioTimeUpdate = (e) => { 
+  onAudioTimeUpdate = (e, progressRef) => { 
+    console.log(progressRef, 'reference');
     const { getTime, calcProgWidth, onFormatTimeOutput } = this;
 
     if(!this.dragging) {
-      this.onProgreessResize(getTime(e.target), this.progressRef.current);
-      this.changeRunnerPosition( calcProgWidth(getTime(e.target)))
+      this.onProgreessResize(getTime(e.target), progressRef.current);
+      this.changeRunnerPosition( calcProgWidth(getTime(e.target), progressRef), progressRef)
     }
     
     const currentTimeElement = e.target.nextElementSibling.nextElementSibling.lastChild.firstChild;
@@ -116,8 +125,8 @@ class App extends Component {
     `(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) ${percents}%, rgb(115, 115, 115) ${percents}%, rgb(115, 115, 115) 100%)`;
   }
 
-  changeRunnerPosition = (width) => {
-    this.progressRef.current.nextElementSibling.style.left = width + 'px';
+  changeRunnerPosition = (width, progressRef) => {
+    progressRef.current.nextElementSibling.style.left = width + 'px';
   }
 
 
@@ -132,20 +141,24 @@ class App extends Component {
     const idToNumber = Number(e.currentTarget.id);
     const idToIndex = idToNumber - 1;
     if(idToIndex === this.state.question) {
+      this.rightRef.current.play();
       this.onGuess(idToIndex);
     } else if(!this.state.guess && this.state.tries[idToIndex] === false) {
+      console.log(this.state.guess, 'youre guess');
       const newTries = [...this.state.tries];
       newTries[idToIndex] = true;
 
       const { points } = this.state;
       const newPoints = points - 1;
-
+      
       this.setState({
         ...this.state,
         tries: newTries,
         choosen: idToIndex,
         points: newPoints
       })
+      this.wrongRef.current.currentTime = 0.0;
+      this.wrongRef.current.play();
 
     } else {
       this.setState({
@@ -158,8 +171,6 @@ class App extends Component {
   onGuess = (id) => {
     const { score, points , guess} = this.state;
     if(guess === null) {
-      //const score = oldScore + newScore + points;
-
       const newScore = score + points;
 
       const newState = {
@@ -168,12 +179,14 @@ class App extends Component {
         choosen: id,
         score: newScore,
       }
-
+      
       this.setState(() => {
         return newState
       })
+      
     } else {
       this.setState((state) => {
+      
         return {
           ...this.state,
           choosen: id
@@ -218,7 +231,7 @@ class App extends Component {
   }
 
 
-  onDragStart = e => {
+  onDragStart = (e, progressRef, audioRef) => {
     this.dragging = true;
     e.target.position = 'absolute';
     e.target.zIndex = 1000;
@@ -226,7 +239,7 @@ class App extends Component {
     
     const moveAt = (pageX, pageY, element) => {
       element.style.left = pageX - element.parentNode.offsetLeft + 'px';
-      this.onProgreessResize( this.calcProgressWidth(), this.progressRef.current);
+      this.onProgreessResize( this.calcProgressWidth(progressRef), progressRef.current);
     }
     moveAt(e.pageX, e.pageY, this.runner);
 
@@ -237,7 +250,7 @@ class App extends Component {
     document.addEventListener('mousemove', mouseMove);
 
     const mouseUp = () => {
-      this.widthToTime(this.audioRef.current, this.calcProgressWidth());
+      this.widthToTime(audioRef.current, this.calcProgressWidth(progressRef));
       document.removeEventListener('mousemove', mouseMove);
       document.removeEventListener('mouseup', mouseUp);
       this.dragging = false;
@@ -267,6 +280,8 @@ class App extends Component {
 
       content = (
         <>
+          <Right ref={this.rightRef} src={right}/>
+          <Wrong ref={this.wrongRef} src={wrong}/>
           <Question 
             update={this.onAudioTimeUpdate}
             click={this.onPlayButtonHandler}
@@ -281,7 +296,8 @@ class App extends Component {
             
           <Container>
             <Answers success={guess} tries={tries} click={this.onTicketClickHandler} tickets={data[stage - 1]}/>
-            <Information 
+            <Information
+            update={this.onAudioTimeUpdate}
             click={this.onPlayButtonHandler}
             drag={this.onDragStart}
             audioReference={this.audioRef2}

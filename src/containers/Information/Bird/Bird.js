@@ -58,7 +58,7 @@ const Description = styled.p`
 export default class Information extends Component {
   render() {
     const {name, species, description, image, audio} = this.props.data;
-    const { click, drag, audioReference, progressReference, playing, id } = this.props;
+    const { click, drag, audioReference, progressReference, playing, id, update } = this.props;
     return (
       <Container>
         <Wrapper>
@@ -78,6 +78,7 @@ export default class Information extends Component {
 
           <GroupMember>
             <Slider
+              update={update}
               id={id}
               click={click}
               drag={drag}
