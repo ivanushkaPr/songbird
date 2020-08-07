@@ -36,7 +36,7 @@ export default class Question extends Component {
     if(this.props.answer) {
       var { image, name} = this.props.answer;
     }
-    const { progressReference, audioReference, click, update } = this.props; 
+    const { progressReference, audioReference, click, update, id } = this.props; 
     return (
       <Container>
         <BirdImage source={image}/>
@@ -47,6 +47,7 @@ export default class Question extends Component {
             }  </BirdName>
           
           <Slider
+            id={id}
             update={update}
             click={click}
             drag={this.props.drag}

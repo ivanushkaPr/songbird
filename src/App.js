@@ -19,8 +19,10 @@ class App extends Component {
     super(props);
     this.audioRef = React.createRef();
     this.progressRef = React.createRef();
+    this.audioRef2 = React.createRef();
+    this.progressRef2 = React.createRef();
     this.state = {
-      stage: 1,
+      stage: 6,
       attempt: 1,
       attempts: 0,
       tries: [false, false, false, false, false, false],
@@ -30,21 +32,25 @@ class App extends Component {
       question: this.getRandomInt(0, 5),
       choosen: null,
       playing: false,
+      playing2: false,
       data: [...birdsData],
     }
   }
 
 
-  onPlayButtonHandler = (e) => {
-    const { playing } = this.state;
+  onPlayButtonHandler = (e, ref, prop) => {
+    console.log('handler fired')
+
+    const playing = this.state[prop];
     const newState = {
-      playing: !playing
+      [prop]: !playing
     };
+    console.log(newState);
 
     if(!playing) {
-      this.audioRef.current.play();
+      ref.current.play();
     } else {
-      this.audioRef.current.pause();
+      ref.current.pause();
     }
 
     this.setState(newState);
@@ -220,7 +226,6 @@ class App extends Component {
     
     const moveAt = (pageX, pageY, element) => {
       element.style.left = pageX - element.parentNode.offsetLeft + 'px';
-      element.style.top = pageY - element.parentNode.offsetTop + 'px';
       this.onProgreessResize( this.calcProgressWidth(), this.progressRef.current);
     }
     moveAt(e.pageX, e.pageY, this.runner);
@@ -256,7 +261,7 @@ class App extends Component {
     const { stage, score, guess, } = this.state;
     let content;
     if(this.state.stage < 7) {
-      const { choosen, data, tries, question, playing } = this.state;
+      const { choosen, data, tries, question, playing, playing2 } = this.state;
       const audioSource = data[stage - 1][question].audio;
       const correctAnswer = data[stage - 1][guess];
 
@@ -270,10 +275,20 @@ class App extends Component {
             progressReference={this.progressRef}
             audio={audioSource} 
             answer={correctAnswer} 
-            playing={playing}/>
+            playing={playing}
+            id={'playing'}
+            />
+            
           <Container>
             <Answers success={guess} tries={tries} click={this.onTicketClickHandler} tickets={data[stage - 1]}/>
-            <Information data={data[stage - 1][choosen]}/>
+            <Information 
+            click={this.onPlayButtonHandler}
+            drag={this.onDragStart}
+            audioReference={this.audioRef2}
+            progressReference={this.progressRef2}
+            playing={playing2}
+            id={'playing2'}
+            data={data[stage - 1][choosen]}/>
           </Container>
           <NextButton click={this.onNextButtonClickHanlder} success={guess}/>
         </>
@@ -283,7 +298,7 @@ class App extends Component {
 
     if(stage === 7) {
       
-      content = <Confragulations click={this.onRestartButtonHandler}/>
+      content = <Confragulations click={this.onRestartButtonHandler} score={score}/>
     }
 
     if(stage === 7 && score === 30) {

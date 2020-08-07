@@ -40,6 +40,7 @@ border-radius: 4px;
 
 
 const confragulations = props => {
+  console.log(props, 'ending')
   return (
     <Container>
       <Title> Поздравляем </Title>

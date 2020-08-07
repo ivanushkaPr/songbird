@@ -102,11 +102,18 @@ export default class Slider extends Component {
         <Audio onLoadedMetadata={this.onLoadAudioHandler} onTimeUpdate={this.props.update} ref={this.props.audioReference} controls src={this.props.audio}>
 
         </Audio>
-        <PlayButton onClick={this.props.click} playing={this.props.playing}> </PlayButton>
+        <PlayButton 
+        onClick={(e) => {
+          const ref = this.props.audioReference, 
+          playing=this.props.id; 
+          this.props.click(e, ref, playing)}}
+          playing={this.props.playing}
+        />
+
         <PlayerWrapper>
           <Bar width={this.props.width}>
             <Progress ref={this.props.progressReference} />
-            <Runner  onMouseDown={this.props.drag} ref={this.runnerRef}/>
+            <Runner onMouseDown={this.props.drag} ref={this.runnerRef}/>
           </Bar>
           
           <TimeContainer>

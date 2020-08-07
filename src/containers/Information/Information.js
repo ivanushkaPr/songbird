@@ -30,7 +30,7 @@ export default class Information extends Component {
     )
     if(this.props.data) {
       content = (
-          <Bird data={this.props.data}/>
+          <Bird {...this.props} />
       )
     }
     return (
