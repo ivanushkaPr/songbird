@@ -8,7 +8,10 @@ margin-bottom: 2rem;
 background-color: #303030;
 width: 100%;
 box-sizing: border-box;
+position: relative;
 `;
+
+const Frame = styled.iframe``;
 
 
 const Title = styled.h1`
@@ -34,18 +37,18 @@ padding: 15px;
 color: white;
 border: 1px solid #444;
 border-radius: 4px;
-
 `;
 
 
 
 const confragulations = props => {
-  console.log(props, 'ending')
   return (
     <Container>
+        
       <Title> Поздравляем </Title>
       <Score> Вы прошли викторину и набрали  {props.score} из 30 возможных баллов </Score>
       <Restart onClick={props.click}> Попробовать еще раз </Restart>
+
     </Container>
   )
 }

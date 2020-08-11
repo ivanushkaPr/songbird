@@ -1,302 +1,393 @@
+
+
 const birdsData = [
   [       
     {
       id: 1,
-      name: 'Ворон',
-      species: 'Corvus corax',
-      description: 'Ворон – крупная птица. Длина тела достигает 70 сантиметров, размах крыльев – до полутора метров. Вороны населяют окрестности Тауэра. В Англии бытует поверье, что в день, когда черные вороны улетят от Тауэра, монархия рухнет.',
-      image: 'https://live.staticflickr.com//65535//49298804222_474cfe8682.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/XIQVMQVUPP/XC518684-Grands%20corbeaux%2009012020%20Suzon.mp3'
+      name: 'Crucified',
+      species: 'The pillars of humanity',
+      description: "I'm crucified \n Crucified like my saviour \n Saintlike behaviour \n A lifetime I prayed.",
+      image: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Crucified_%28Army_of_Lovers_song%29.jpg/220px-Crucified_%28Army_of_Lovers_song%29.jpg',
+      audio: 'gaysongs/Army/Crucified.mp3'
     },
     {
       id: 2,
-      name: 'Журавль',
-      species: 'Grus grus',
-      description: 'Звуки, издаваемые журавлем, похожи на звонкое «кур-лы – кур-лы». Журавли чаще всего поют дуэтом – одна птица начинает запев со слога «кур», а вторая подхватывает «лы». Если птица поёт одна, то она издает только звук «кур».',
-      image: 'https://live.staticflickr.com/65535/49221158846_b0b69a58f1.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC512582-190604_1087_Grus_tok.mp3'
+      name: 'Israelism',
+      species: 'The Gods of Earth and Heaven',
+      description: 'Evenu shalom alechem \n Evenu shalom alechem \n Evenu shalom alechem \n Evenu shalom shalom \n Shalom alechem.',
+      image: 'https://i1.sndcdn.com/artworks-000453488052-glmni1-t500x500.jpg',
+      audio: 'gaysongs/Army/Israelism.mp3'
     },
     {
       id: 3,
-      name: 'Ласточка',
-      species: 'Delichon urbicum',
-      description: 'Для ласточек характерно негромкое щебетание. Песни ласточек не смолкают на протяжении всего лета. Исследователи различают у птиц до 6 щебечущих звуков: «вит», «ви-вит», «чивит», «чиривит» и т.п. Ласточки любят петь дуэтом.',
-      image: 'https://live.staticflickr.com//65535//48539007512_5029d2a9a0.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/VOLIQOYWKG/XC489247-190724_09.10h_huiszwaluw_biesbosch_amaliahoeve_roep_100%2Bex_fouragerend_gezien_%20%282%29.mp3'
+      name: 'La Place De Saint Tropez',
+      species: 'The Gods of Earth and Heaven',
+      description: "We drink tea for two \n The sky is blue and I love you \n It's in your eyes you love me too \n Where it never rains",
+      image: 'https://img.discogs.com/0z5q0yQXqeDRJijCIai61CT6vVc=/fit-in/600x524/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-355054-1295050713.jpeg.jpg',
+      audio: 'gaysongs/Army/La-Place-De-Saint-Tropez.mp3'
     },
     {
       id: 4,
-      name: 'Козодой',
-      species: 'Caprimulgus europaeus',
+      name: 'Lit De Parade',
+      species: 'Glory, Glamour and Gold',
       description: 'Козодой – неприметная птица, известная благодаря своему голосу. Песня козодоя звучит как монотонная трель похожая на тарахтение мотоцикла. Такое дребезжание слышно от заката до рассвета, его тональность, частота и громкость изменяются. ',
-      image: 'https://live.staticflickr.com/65535/48456345286_dbc8530027.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/VOLIQOYWKG/XC486956-190623_22.37h_nachtzwaluw_rechte%20heide_zang_ad%20_2ex_gezien_.mp3'
+      image: 'https://img.discogs.com/ZqkKQl2e4qqMaFd3XXZxFv16h_I=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-3356584-1351809229-5173.jpeg.jpg',
+      audio: 'gaysongs/Army/Lit-De-Parade.mp3'
     },
     {
       id: 5,
-      name: 'Кукушка',
-      species: 'Cuculus canorus',
-      description: 'Кукушку назвали так из-за особенностей ее песен. Звонкое «ку-ку» не спутать ни с какой другой птицей. Кукушки не строят гнезда, их потомство выращивают другие виды пернатых, которым кукушки подбрасывают свои яйца.',
-      image: 'https://live.staticflickr.com/65535/48377838151_e15f430ec1.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/VOLIQOYWKG/XC501461-190616_08.13h_koekoek_brabantse%20biesbosch%20jantjesplaat_roep_1%20ex_ad%20m_ter%20plaatse%20zingend_gezien_.mp3'
+      name: 'Obsession',
+      species: 'Massive Luxury Overdose',
+      description: "Wake up shining \n Rise like the sun \n Supernature \nForever young",
+      image: 'https://upload.wikimedia.org/wikipedia/en/e/ea/Army_of_Lovers-Obsession.jpg',
+      audio: 'gaysongs/Army/Obsession.mp3'
     },
     {
       id: 6,
-      name: 'Синица',
-      species: 'Parus major',
-      description: 'В щебетании синиц различают более 40 различных звуковых сочетаний. Поют они практически круглый год, немного затихая только зимой. Синицы настоящие санитары леса. Одна пара синиц в период гнездования оберегает от вредителей десятки деревьев.',
-      image: 'https://live.staticflickr.com//65535//49366042493_c48c81d58d.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/RFGQDPLDEC/XC518417-Kj%C3%B8ttmeis%20XC%20Helg%C3%B8ya%20Elias%20A.%20Ryberg20200108133922_079.mp3'
+      name: 'Sexual Revolution',
+      species: 'Glory, Glamour and Gold',
+      description: "Love is love let's come together \n Love is free it lasts forever \n Free is love my contribution \n Hail the sexual revolution",
+      image: 'https://avatars.yandex.net/get-music-content/42108/8a98d39a.a.6697-1/m1000x1000',
+      audio: 'gaysongs/Army/Sexual-Revolution.mp3'
     }
   ],
   [
     {
       id: 1,
-      name: 'Воробей',
-      species: 'Passer domesticus',
-      description: 'Воробьи являются самыми известными и узнаваемыми пернатыми. Их легко узнать по пестрому оперению и задорному чириканью. Воробьи относятся к синатропному виду — они селятся поблизости к человеческому жилищу.',
-      image: 'https://live.staticflickr.com//65535//49366595303_06cf65b07e.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/CXFHOPIVAS/XC503224-191020_0134.mp3'
+      name: 'Black Money',
+      species: 'Colour by Numbers',
+      description: "But when you love someone \n And they don't love you in return \n When you love someone \n You've got money to burn",
+      image: 'https://www.udiscovermusic.com/wp-content/uploads/2020/02/Culture-Club-GettyImages-85842236.jpg',
+      audio: 'gaysongs/Boy/Black-Money.mp3'
     },
     {
       id: 2,
-      name: 'Грач',
-      species: 'Corvus frugilegus',
-      description: 'Грачи очень умные и сообразительные птицы. С помощью клюва они создают и используют простейшие орудия. У грачей развит рефлекс на звуки трактора. Услышав «тарахтение», они летят на звук – трактор пашет землю, значит, в этом месте много корма.',
-      image: 'https://live.staticflickr.com//65535//49347123322_291c86b016.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/RLRHCUIPIY/XC512540-gawron%20Suble%2019.12.19%20%2012.35.mp3'
+      name: 'Do You Really Want To Hurt Me',
+      species: 'Kissing to Be Clever',
+      description: "Do you really want to hurt me \n Do you really want to make me cry \n Precious kisses words that burn me \n Lovers never ask you why",
+      image: 'https://upload.wikimedia.org/wikipedia/en/b/b1/Do_You_Really_Want_To_Hurt_Me.jpg',
+      audio: 'gaysongs/Boy/Do-You-Really-Want-To-Hurt-Me.mp3'
     },
     {
       id: 3,
-      name: 'Галка',
-      species: 'Coloeus monedula',
-      description: 'Слово «галка» произошло из старославянского языка и переводится как «чёрный». Этим словом часто называют воронов или других черных птиц. Латинское название галки «monedula» связывают со словами монета за любовь птицы к блестящим и ярким вещам.',
-      image: 'https://live.staticflickr.com//65535//49237149586_993cf685c5.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/GYAUIPUVNM/XC510498-Coloeus%20monedula_2019.11.13_11.55_01.mp3'
+      name: 'I Just Wanna Be Loved',
+      species: ' Dont Mind If I Do',
+      description: "Take a piece of dignity \n And use it in your life \n Even though you hurt me \n I still want you to survive",
+      image: 'https://upload.wikimedia.org/wikipedia/en/a/af/Culture_Club_I_Just_Wanna_Be_Loved_Single.jpg',
+      audio: 'gaysongs/Boy/I-Just-Wanna-Be-Loved.mp3'
     },
     {
       id: 4,
-      name: 'Певчий дрозд',
-      species: 'Turdus philomelos',
-      description: 'Дрозд — лучший певец из отряда воробьиных. Песня состоит только из красивых звучных свистов и коротких трелей. Чаще всего её можно услышать в утреннее и вечернее время. Поют дрозды в течении всего периода гнездования.',
-      image: 'https://live.staticflickr.com/65535/48979125763_e2534f54bd.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC513326-190704_1146_TF-Glogow.mp3'
+      name: 'Karma Chameleon',
+      species: 'Colour by Numbers',
+      description: "Karma, karma, karma, karma, karma chameleon \n You come and go, you come and go \n Loving would be easy if your colors were like my dreams \n Red, gold, and green, red, gold, and green",
+      image: 'https://upload.wikimedia.org/wikipedia/ru/7/7d/KarmaChameleon.jpg',
+      audio: 'gaysongs/Boy/Karma-Chameleon.mp3'
     },
     {
       id: 5,
-      name: 'Сорока',
-      species: 'Pica pica',
-      description: 'Сорока очень трудолюбивая птица. Она строит до восьми гнёзд, а потом выбирает из них самое лучшее. Вход в гнездо сорок всегда обращен на юг, чтобы в жилище было теплее. Сороки являются единственными птицами, которые узнают себя в зеркале.',
-      image: 'https://live.staticflickr.com//65535//49360363066_ff02bb6a73.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/GYAUIPUVNM/XC500868-Pica%20pica2019.08.23_09.18_02.mp3'
+      name: 'Take Control',
+      species: 'Kissing to Be Clever',
+      description: `No defeat
+      Your dance is sweet
+      'Cause you ripped it from my soul
+      I'll kiss you`,
+      image: 'https://i.ytimg.com/vi/-VzspnUQJ5c/hqdefault.jpg',
+      audio: 'gaysongs/Boy/Take-Control.mp3'
     },
     {
       id: 6,
-      name: 'Сойка',
-      species: 'Garrulus glandarius',
-      description: 'Когда сойка волнуется, хохолок на её голове взъерошивается. Птица старается создать устрашающее зрелище. Сойки умеют имитировать голоса других птиц, животных и звуки, которые создает человек. На зиму они делают большие запасы желудей и орехов.',
-      image: 'https://live.staticflickr.com//65535//49369678956_9a7465c7f4.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/TFOGOENSTQ/XC501517-191008_1590%201300.%20Eichelh%C3%A4her%20D%2C%20NW%2C%20LEV.%20Stephan%20Risch.mp3'
+      name: 'Time',
+      species: 'Kissing to Be Clever',
+      description: `Don't put your head on my shoulder
+      Sink me in a river of tears
+      This could be the best place yet
+      But you must overcome your fears`,
+      image: 'https://upload.wikimedia.org/wikipedia/en/6/62/Timeclock-CultureClub.jpg',
+      audio: 'gaysongs/Boy/Time.mp3'
     }
   ],
   [
     {
       id: 1,
-      name: 'Зяблик',
-      species: 'Fringilla coelebs',
-      description: 'В дикой природе насчитывается 450 видов зябликов. Зимой зяблики ведут стайный образ жизни. Иногда в их семьях можно увидеть воробьев. Запевают зяблики весной, с наступлением брачного периода. Их пение – это заливистые многоминутные рулады.',
-      image: 'https://live.staticflickr.com/65535/49143150817_2d3a2f6c1e.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC512407-150622_03%20zi%C4%99ba%20%282%29.mp3'
+      name: 'Believe',
+      species: 'Made in England',
+      description: `I believe in love, it's all we got
+      Love has no boundaries, costs nothing to touch
+      War makes money, cancer sleeps
+      Curled up in my father and that means something to me`,
+      image: 'https://upload.wikimedia.org/wikipedia/en/3/3d/Believe_%28Elton_John%29.jpg',
+      audio: 'gaysongs/Elton/Believe.mp3'
     },
     {
       id: 2,
-      name: 'Клёст',
-      species: 'Loxia curvirostra',
-      description: 'Клестов называют «рождественскими» птицами. В естественных условиях они дают потомство зимой – в январе. Эти птицы утепляют свои гнезда мхом и шерстью животных, потому птенцам не холодно. В поисках шишек клесты могут улетать за 3500 км от гнезда.',
-      image: 'https://live.staticflickr.com//65535//49365470123_f2de66bb35.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/OTVUCEGYZN/XC495381-Kruisbek%20roep%20NHD%20290619.mp3'
+      name: 'Can You Feel The Love Tonight',
+      species: 'Single, OST Lion King',
+      description: `And can you feel the love tonight?
+      It is where we are
+      It's enough for this wide-eyed wanderer
+      That we've got this far`,
+      image: 'https://img.discogs.com/YIHKcXHtXOjTGVmOiXCxX_59pR8=/fit-in/450x456/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-4281746-1360598474-2958.jpeg.jpg',
+      audio: 'gaysongs/Elton/Can-You-Feel-The-Love-Tonight.mp3'
     },
     {
       id: 3,
-      name: 'Горлица',
-      species: 'Streptopelia turtur',
-      description: 'Горлица обитает в смешанных и широколиственных лесах, а также в городских парках и поселках. Птицы часто выбирают места жизни рядом с человеком и легко привыкают к людям. Благодаря мелодичному приятному пению горлиц часто разводят в домашних условиях.',
-      image: 'https://live.staticflickr.com/65535/48063004977_84252f9ceb.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC324106-Turkawka_Streptopelia_turtur_Poland_Jarek_Matusiak_2011625_07.mp3'
+      name: 'Im Still Standing',
+      species: 'Too Low for Zero',
+      description: `You could never know what it's like
+      Your blood like winter freezes just like ice
+      And there's a cold lonely light that shines from you
+      You'll wind up like the wreck you hide behind that mask you use`,
+      image: 'https://img.discogs.com/7lkfpbzi8EmmfTKS48vpXHQQ1PA=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-590760-1573798021-8254.jpeg.jpg',
+      audio: 'gaysongs/Elton/Im-Still-Standing.mp3'
     },
     {
       id: 4,
-      name: 'Дятел',
-      species: 'Dendrocopos major',
-      description: 'Дятел – заметная и шумная птица, часто живет рядом с человеком. С середины января до конца июня можно услышать «барабанную дробь» дятлов – трель от вибрации веток под быстрыми ударами клюва птицы. В хорошую погоду дробь слышна в радиусе 1,5 км.',
-      image: 'https://live.staticflickr.com/65535/49339376578_e933426455.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC518928-AB-017%20dzi%C4%99cio%C5%82%20du%C5%BCy%20agresja%20%282%29.mp3'
+      name: 'Rocket Man',
+      species: 'Honky Château',
+      description: `She packed my bags last night pre-flight
+      Zero hour nine a.m.
+      And I'm gonna be high as a kite by then
+      I miss the earth so much I miss my wife`,
+      image: 'https://upload.wikimedia.org/wikipedia/ru/0/04/Elton_John_-_Rocket_Man.jpg',
+      audio: 'gaysongs/Elton/Rocket-Man.mp3'
     },
     {
       id: 5,
-      name: 'Удод',
-      species: 'Upupa epops',
-      description: 'Удоды предпочитают жить на открытых ландшафтах с отдельными деревьями или рощами. Наиболее удобными для птицы являются лесостепь и саванна. Удод может выбирать места жительства рядом с человеком: пастбища, виноградники, фруктовые сады.',
-      image: 'https://live.staticflickr.com//65535//49226383598_6f8be86a06.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC477326-dudek%20%282%29.mp3'
+      name: 'Sacrifice',
+      species: 'Sleeping with the Past',
+      description: `Cold, cold heart
+      Hard done by you
+      Some things look better, baby
+      Just passing through`,
+      image: 'https://pp.userapi.com/c830401/v830401819/78ec2/YgfXiP75FUs.jpg',
+      audio: 'gaysongs/Elton/Sacrifice.mp3'
     },
     {
       id: 6,
-      name: 'Стриж',
-      species: 'Apus apus',
-      description: 'Стрижа можно увидеть практически в каждом уголке планеты. Они обитают как в лесных зонах, так и на открытых местностях. Живут стрижи крупными стаями. Большие колонии этих птиц можно увидеть в городах или на прибрежных скалах.',
-      image: 'https://live.staticflickr.com//65535//48386150031_7b749df74b.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/TMUAWSDHDJ/XC511871-G.mp3'
+      name: 'Sorry Seems to Be the Hardest Word',
+      species: 'Blue Moves',
+      description: `What have I got to do to make you love me
+      What have I got to do to make you care
+      What do I do when lightning strikes me
+      And I wake to find that you're not there?`,
+      image: 'https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Sorry_Seems_to_Be_the_Hardest_Word_Single.jpeg/220px-Sorry_Seems_to_Be_the_Hardest_Word_Single.jpeg',
+      audio: 'gaysongs/Elton/Sorry.mp3'
     }
   ],
   [
     {
       id: 1,
-      name: 'Жаворонок',
-      species: 'Alauda arvensis',
-      description: 'Жаворонки — перелетные птицы. С начала сентября они отлетают на юг. Возвращаются они в начале марта, независимо от того, сошел снег или нет. По прилету жаворонков определяли наступление весны и пору, когда пора пахать землю.',
-      image: 'https://live.staticflickr.com/65535/47105096764_f751fba568.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC462158-Skowronek_Alauda_arvensis_Poland_Jarek_Matusiak_%20-006%20skowronek%20%282%29.mp3'
+      name: 'Careless Whisper',
+      species: 'Careless Whisper',
+      description: `I'm never gonna dance again
+      Guilty feet have got no rhythm
+      Though it's easy to pretend
+      I know you're not a fool`,
+      image: 'https://img.discogs.com/7Ms0S13vlqi306gcfLPzzq9XsTY=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-1296467-1588067652-7526.jpeg.jpg',
+      audio: 'gaysongs/George/Careless-Whisper.mp3'
     },
     {
       id: 2,
-      name: 'Соловей',
-      species: 'Luscinia luscinia',
-      description: 'Соловьи поют с начала мая и до конца лета. Каждая песня соловья состоит из 12 повторяющихся элементов, которые еще называют коленами. Кроме собственных трелей, соловьи легко и хорошо перенимают пение других птиц.',
-      image: 'https://live.staticflickr.com/7605/27669397735_f3c21758f2.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/HILVWSADVL/XC513809-R07_0052%20Thrush%20Nightingale%20Snipe.mp3'
+      name: 'Faith',
+      species: 'Faith',
+      description: `Well, I guess it would be nice if I could touch your body
+      I know not everybody has got a body like you
+      But I gotta think twice before I give my heart away
+      And I know all the games you play because I played them, too`,
+      image: 'https://images-na.ssl-images-amazon.com/images/I/51F5kX%2BeoTL._AC_.jpg',
+      audio: 'gaysongs/George/Faith.mp3'
     },
     {
       id: 3,
-      name: 'Скворец',
-      species: 'Sturnus vulgaris',
-      description: 'Скворцы - перелётные птицы. Синхронный перелет больших стай скворцов называется мурмурацией. Это красивое и завораживающее явление – множество птиц будто танцуют в воздухе, образуя замысловатые фигуры, которые уменьшаются и увеличиваются в небе.',
-      image: 'https://live.staticflickr.com/65535/49357593971_9509fe1d7c.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/GYAUIPUVNM/XC515519-2020.01.01_17.24_01.MP3'
+      name: 'Father Figure',
+      species: 'Faith',
+      description: `Sometimes I think that you'll never
+      Understand me
+      But something tells me together
+      We'd be happy, oh oh`,
+      image: 'https://upload.wikimedia.org/wikipedia/ru/2/2c/Father_Figure.jpg',
+      audio: 'gaysongs/George/Father-Figure.mp3'
     },
     {
       id: 4,
-      name: 'Иволга',
-      species: 'Oriolus oriolus',
-      description: 'Мелодичность голоса иволги сравнивают со звучанием флейты. Человеку сложно разглядеть иволгу, так как она обитает высоко на деревьях. Иволга не только очень красивая, но и  полезная птица. Она уничтожает ядовитых гусениц, которых не поедают другие птицы.',
-      image: 'https://live.staticflickr.com/65535/47102184004_58a93380b9.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/GYAUIPUVNM/XC491801-2019.07.07_06.28_01.mp3'
+      name: 'Freedom',
+      species: 'Single',
+      description: `I won't let you down
+      I will not give you up
+      Gotta have some faith in the sound
+      It's the one good thing that I've got`,
+
+      image: 'https://img.discogs.com/fE4vsVHHubgTgVzM9NpNN0Z0PEs=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-10924319-1508417476-1133.jpeg.jpg',
+      audio: 'gaysongs/George/Freedom.mp3'
+
     },
     {
       id: 5,
-      name: 'Свиристель',
-      species: 'Bombycilla garrulus',
-      description: 'У свиристели очень цепкие коготки, что помогает птице удерживаться на ветках и склевывать ягоды, которые труднее всего достать. В период ухаживаний самец предлагает самке ягоду или другое угощение. Если самка его принимает, то птицы создают пару.',
-      image: 'https://live.staticflickr.com//65535//49367433842_1b06da0e6b.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC517421-AB-004%20%282%29%20jemio%C5%82uszka.mp3'
+      name: 'Jesus To A Child',
+      species: 'Older',
+      description: `Kindness
+      In your eyes, I guess
+      You heard me cry
+      You smiled at me`,
+      image: 'https://song-story.ru/wp-content/uploads/2016/12/Jesus-to-a-Child-George-Michael-1200x1196.jpg',
+      audio: 'gaysongs/George/Jesus-To-A-Child.mp3'
     },
     {
       id: 6,
-      name: 'Щегол',
-      species: 'Carduelis carduelis',
-      description: 'Щеглы поют красиво и мелодично. И в природе, и в неволе они щебечут почти круглый год. В пении щегла различают более 20 переливчатых трелей. Щеглы привыкают к людям, и даже могут возвратиться к хозяину после того, как их выпустили на волю',
-      image: 'https://live.staticflickr.com//65535//49366257253_db3ce48b9a.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/VOLIQOYWKG/XC489265-190724_07.58h_putter_biesbosch_%20boompjes%20langs%20open%20water_zang_1ex_ad_niet%20gezien_.mp3'
+      name: 'Last-Christmas',
+      species: 'The Very Best',
+      description: `Last Christmas, I gave you my heart
+      But the very next day you gave it away
+      This year, to save me from tears
+      I'll give it to someone special`,
+      image: 'https://i.ytimg.com/vi/fxoJnp8aDU0/maxresdefault.jpg',
+      audio: 'gaysongs/George/Last-Christmas.mp3'
     }
   ],
   [
     {
       id: 1,
-      name: 'Орёл',
-      species: 'Aquila nipalensis',
-      description: 'В древние времена орел был символом солнца. Орлы часто парят над землей, при этом скорость их перемещения может достигать 240 км/ч. Иллюзия медленного движения происходит из-за высоты полета – более 700 метров',
-      image: 'https://live.staticflickr.com//4835//43867392960_7105d71e19.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/KTBTZAHSXF/10_Aquila_nipalensis_al02D85.mp3'
+      name: 'Bohemian Rhapsody',
+      species: 'A Night At The Opera',
+      description: `Mama, just killed a man
+      Put a gun against his head
+      Pulled my trigger, now he's dead
+      Mama, life had just begun`,
+      image: 'https://song-story.ru/wp-content/uploads/2016/05/Bohemian-Rhapsody-Queen.jpg',
+      audio: 'gaysongs/Queen/Bohemian-Rhapsody.mp3'
     },
     {
       id: 2,
-      name: 'Коршун',
-      species: 'Milvus migrans',
-      description: 'Коршуны – крупные хищники, в высоту они достигают около полуметра, а вес взрослых особей достигает 1 кг. Крылья узкие и длинные, их размах составляет 1,5 м. Коршуны часто гнездятся большими стаями и даже образуют крупные колонии.',
-      image: 'https://live.staticflickr.com//65535//48701190276_ee2a9ed594.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/SDPCHKOHRH/XC485740-2019-06-22%20Selenga%20Milan%20brun%20cris%20de%20quemandage%203.mp3'
+      name: 'Dont Stop Me Now',
+      species: 'Jazz',
+      description: `Tonight, I'm gonna have myself a real good time
+      I feel alive and the world I'll turn it inside out, yeah
+      And floating around in ecstasy
+      So don't stop me now don't stop me`,
+      image: 'https://i.pinimg.com/originals/99/c0/79/99c0798469bd2176190769312a0ecc4b.jpg',
+      audio: 'gaysongs/Queen/Dont-Stop-Me-Now.mp3'
+
     },
     {
       id: 3,
-      name: 'Лунь',
-      species: 'Circus cyaneus',
-      description: 'Лунь – это небольшой сокол. Питается в основном мышевидными грызунами, основа его рациона – полёвки, хомяки, мыши. Оперение луня может быть пепельно-серым. С такой птицей связано сравнение «седой, как лунь».',
-      image: 'https://live.staticflickr.com/65535/49322743903_32f3922d9e.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC513498-190709_1175_Cir.cyan-f.mp3'
+      name: 'Living On My Own',
+      species: 'Mr. Bad Guy',
+      description: `Sometimes I feel nobody gives me no warning
+      Find my head is always up in the clouds
+      In a dream world
+      It's not easy living on my own`,
+      image: 'https://upload.wikimedia.org/wikipedia/en/f/f6/Living_on_My_Own_cover_-_Freddie_Mercury.jpg',
+      audio: 'gaysongs/Queen/Living-On-My-Own.mp3'
     },
     {
       id: 4,
-      name: 'Сокол',
-      species: 'Falco peregrinus',
-      description: 'Латинское название сокола Falco произошло от слова «серп» из-за серповидной формы крыльев. Длинные и широкие крылья позволяют соколу высоко подниматься в небо и свободно парить. Скорость полёта сокола достигает 280-320 километров в час.',
-      image: 'https://live.staticflickr.com//65535//49310710607_92a3a145a9.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/MMEJYLOPDO/XC496049-Pilgrimsfalk_06.mp3'
+      name: 'Radio Ga Ga',
+      species: 'The Works',
+      description: `I'd sit alone and watch your light
+      My only friend through teenage nights
+      And everything I had to know
+      I heard it on my radio`,
+      image: 'https://i2.wp.com/song-story.ru/wp-content/uploads/2019/12/radio_ga_ga_queen.jpg?fit=400%2C400&ssl=1',
+      audio: 'gaysongs/Queen/Radio-Ga-Ga.mp3'
     },
     {
       id: 5,
-      name: 'Ястреб',
-      species: 'Accipiter gentilis',
-      description: 'Для всех ястребов характерны широкие и короткие крылья. Ещё один отличительный признак - белые «брови» над глазами. Славянские дружинники размещали изображение ястреба на своих знаменах, как символ отваги, мощи и безжалостности к врагам.',
-      image: 'https://live.staticflickr.com//65535//49024617331_b9d0d2c9b3.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/MMEJYLOPDO/XC512740-Duvh%C3%B6k_09.mp3'
+      name: 'We Are The Champions',
+      species: 'News of the World',
+      description: `I've taken my bows
+      And my curtain calls
+      You brought me fame and fortune and everything that goes with it
+      I thank you all`,
+      image: 'https://images-na.ssl-images-amazon.com/images/I/51-x8aqPCOL._SX466_.jpg',
+      audio: 'gaysongs/Queen/We-Are-The-Champions.mp3'
+
     },
     {
       id: 6,
-      name: 'Филин',
-      species: 'Bubo bubo',
-      description: 'Полет филина бесшумный, зрение очень острое. Эти особенности делают птицу непревзойденным ночным охотником. У филина нет естественных врагов, ни один зверь не охотится на взрослых птиц. А вот на птенцов нападают лисы и волки.',
-      image: 'https://live.staticflickr.com/65535/48137123012_393653c2e4.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/WNLIDKJKXT/XC518386-sense%20t%C3%ADtol.mp3'
+      name: 'We Will Rock You',
+      species: 'News of the World',
+      description: `Buddy, you're a boy, make a big noise
+      Playing in the street, gonna be a big man someday
+      You got mud on your face, you big disgrace
+      Kicking your can all over the place, singin'`,
+      image: 'https://rock-history.ru/upload/000/u1/009/34a8f977.jpg',
+      audio: 'gaysongs/Queen/We-Will-Rock-You.mp3'
+
     }
   ],
   [
     {
       id: 1,
-      name: 'Альбатрос',
-      species: 'Diomedea exulans',
-      description: 'Альбатрос - самая крупная летающая птица в мире. Размах крыльев достигает три с половиной, вес - десять килограммов. Большую часть жизни альбатросы проводят в воздухе, покрывая над океанскими просторами огромные расстояния',
-      image: 'https://live.staticflickr.com/7557/16260253965_8e9430cb66.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/WOEAFQRMUD/XC293087-Diomedea%20exulans151120_T254.mp3'
+      name: 'Go West',
+      species: 'Go West',
+      description: `(Together) We will go our way
+      (Together) We will leave someday
+      (Together) Your hand in my hand
+      (Together) We will make the plans`,
+      image: 'data:image/jpeg;base64,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',
+      audio: 'gaysongs/YMCA/Go-West.mp3'
+
     },
     {
       id: 2,
-      name: 'Олуша',
-      species: 'Sula nebouxii',
-      description: 'Особенностью голубоногой олуши является не только насыщенный ярко-синий цвет лапок, но еще и тот факт, что они очень теплые. В то время как другие виды птиц греют кладки своим телом, голубоногая олуша делает это с помощью лапок',
-      image: 'https://live.staticflickr.com/800/40645471394_4422e69ed8.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/YHKQPPJDVP/XC411507-171217_1491%20BF%20Booby%205ft%20IDLP%201230%20mp3%20amp.mp3'
+      name: 'Hot Cop',
+      species: 'Cruisin',
+      description: `Pleasure
+      Pleasure is my game
+      
+      Pleasure will lead
+      To my fortune and fame, all right`,
+      image: 'https://coubsecure-s.akamaihd.net/get/b96/p/coub/simple/cw_timeline_pic/e80409539b1/ef2abafbbee4724de83c6/med_1475247050_image.jpg',
+      audio: 'gaysongs/YMCA/Hot-Cop.mp3'
+
     },    
     {
       id: 3,
-      name: 'Буревестник',
-      species: 'Puffinus griseus',
-      description: 'Размеры буревестниковых разные. Самые маленькие из них в длину составляют до 25 см, самые большие - до 1 м, при размахе крыльев около 2 м. Существует поверье, что появление буревестника в воздухе предвещает бурю, о чем говорит само название птицы.',
-      image: 'https://live.staticflickr.com//607//22136056020_935cb113f9.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/XQEVNREHJY/SHEARWATER%20Christmas%20Island_04_Motu_Isla%20de%20Pascua-Easter%20Island_CH_4MAR03_Alvaro%20Jaramillo.mp3'
+      name: 'In the Navy',
+      species: 'Go West',
+      description: `In the navy
+      Yes, you can sail the seven seas
+      In the navy
+      Yes, you can put your mind at ease`,
+      image: 'https://img.discogs.com/0OOgdQaw-NnlOAxBwinzxgbroFo=/fit-in/600x519/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-539063-1455454138-7255.jpeg.jpg',
+      audio: 'gaysongs/YMCA/In-the-Navy.mp3'
+
     },
     {
       id: 4,
-      name: 'Пеликан',
-      species: 'Pelecanus',
-      description: 'Пеликаны — обитатели морей и рек. Ходят они неуклюже, но хорошо летают и плавают. Питаются в основном рыбой, устраивают коллективные охоты — выстроившись полукругом хлопают по воде крыльями и клювами и вытесняют напуганную рыбу на мелководье.',
-      image: 'https://live.staticflickr.com/7885/46523771945_9496c2a191.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/XAMHIHFTZG/XC331138-call1.mp3'
+      name: 'Macho-Man',
+      species: 'Macho Man',
+      description: `Hey! Hey! Hey, hey, hey!
+      Macho, macho man (macho man)
+      I've got to be, a macho man
+      Macho, macho man`,
+      image: 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Villagemachoman.jpg/220px-Villagemachoman.jpg',
+      audio: 'gaysongs/YMCA/Macho-Man.mp3'
     },
     {
       id: 5,
-      name: 'Пингвин',
-      species: 'Aptenodytes forsteri',
-      description: 'Самец императорского пингвина достигает роста 130 см, его масса может приближаться к 50 кг. Из всех современных пингвинов этот вид – самый крупный. Питание пингвина состоит из рыбы, кальмаров и криля. Охотятся птицы в океане большими группами.',
-      image: 'https://live.staticflickr.com/5202/5252413926_8e013a3efd.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/OOECIWCSWV/XC449827-LS100829%20King%20Penguin%20call%20A.mp3'
+      name: 'Sex Over the Phone',
+      species: 'Sex Over the Phone',
+      description: `Sex over the phone - You know I like it.
+      Sex over the phone - You know I need it.
+      Sex over the phone - Come on and give it to me baby.
+      Sex over the phone.`,
+      image: 'https://i.ytimg.com/vi/EfdHcOv5zXY/hqdefault.jpg',
+      audio: 'gaysongs/YMCA/Over-the-Phone.mp3'
+
     },
     {
       id: 6,
-      name: 'Чайка',
-      species: 'Larus argentatus',
-      description: 'Чайки населяют берега морей, озёр, рек, водохранилищ, болот, часто гнездятся на островах. С конца прошлого века чайки стали появляться в крупных городах, где устраивает гнёзда на крышах зданий. Все чайки ведут колониальный образ жизни.',
-      image: 'https://live.staticflickr.com/65535/48577115317_7034201dde.jpg',
-      audio: 'https://www.xeno-canto.org/sounds/uploaded/VOLIQOYWKG/XC501190-190801_06.50h_zilvermeeuw_duinen%20van%20goeree_roep_2ex_overvliegend_gezien_.mp3'
+      name: 'Y.M.C.A.',
+      species: 'Cruisin',
+      description: `Young man, there's no need to feel down
+      I said, young man, pick yourself off the ground
+      I said, young man, cause you're in a new town
+      There's no need to be unhappy`,
+      image: 'https://ichef.bbci.co.uk/news/1024/cpsprodpb/7E7F/production/_108238323_9c861ecd-6b09-4874-bfa1-4600a39faa83.jpg',
+      audio: 'gaysongs/YMCA/YMCA.mp3'
+
     }
   ]
 ];

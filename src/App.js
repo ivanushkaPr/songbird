@@ -12,8 +12,13 @@ import wrong from './sounds/wrong.mp3';
 import right from './sounds/right.mp3';
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  @media(max-width: 661px) {
+    flex-direction: column;
+  
+  }
 `;
 
 const Wrong = styled.audio`
@@ -21,6 +26,25 @@ const Wrong = styled.audio`
 
 const Right = styled.audio`
   display: none`;
+
+const Ricardo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  margin: 50px auto;
+  background-image: url(https://cdn22.img.ria.ru/images/155355/37/1553553784_0:361:2726:1894_600x0_80_0_0_61cc1d858b7cac70204af31aba771381.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 4px solid #ff0018;
+  border-radius: 4px;
+  min-height: 409px;
+  color: white;
+  font-size: 24px;
+
+  box-shadow: 0 0 4px 4px #ffa52c,  0 0 8px 8px #ffff41,  0 0 12px 12px #008018, 0 0 16px 16px #0000f9,  0 0 20px 20px #86007d;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +63,7 @@ class App extends Component {
       guess: null,
       points: 5,
       score: 0,
-      question: this.getRandomInt(0, 5),
+      question:  this.getRandomInt(0, 5),
       choosen: null,
       playing: false,
       playing2: false,
@@ -53,7 +77,6 @@ class App extends Component {
     const newState = {
       [prop]: !playing
     };
-    console.log(newState);
 
     if(!playing) {
       ref.current.play();
@@ -127,9 +150,6 @@ class App extends Component {
     progressRef.current.nextElementSibling.style.left = width + 'px';
   }
 
-  onVolumeChange = (audio) => {
-    
-  }
 
   calcVolumeLevel = (audio) => {
     const parent = this.volumeEl.getBoundingClientRect();
@@ -140,7 +160,6 @@ class App extends Component {
 
     const volumeLevel = childWidth / parentWidth;
     audio.current.volume = volumeLevel;
-    console.log(audio.current.volume)
   }
 
   onAudioChangeHandler = (e, audioRef) => {
@@ -154,7 +173,6 @@ class App extends Component {
 
 
       level =  pageX < volumeElCoords.left ?  0 : pageX > volumeElCoords.right ? volumeElCoords.width : level;
-      console.log(level, 'level is');
       child.style.width = level < maxWidth  ? level + 'px' : volumeElCoords.width;
 
       this.calcVolumeLevel(audioRef);
@@ -188,11 +206,12 @@ class App extends Component {
   onTicketClickHandler = (e) => {
     const idToNumber = Number(e.currentTarget.id);
     const idToIndex = idToNumber - 1;
+    let wasChoosen = idToIndex !== this.state.choosen ? false : true;
+
     if(idToIndex === this.state.question && !this.state.guess) {
       this.rightRef.current.play();
       this.onGuess(idToIndex);
     } else if(!this.state.guess && this.state.tries[idToIndex] === false) {
-      console.log(this.state.guess, 'youre guess');
       const newTries = [...this.state.tries];
       newTries[idToIndex] = true;
 
@@ -203,7 +222,8 @@ class App extends Component {
         ...this.state,
         tries: newTries,
         choosen: idToIndex,
-        points: newPoints
+        points: newPoints,
+        playing2: wasChoosen
       })
       this.wrongRef.current.currentTime = 0.0;
       this.wrongRef.current.play();
@@ -211,13 +231,22 @@ class App extends Component {
     } else {
       this.setState({
         ...this.state,
-        choosen: idToIndex
+        choosen: idToIndex,
+        playing2: wasChoosen
       })
     }
   }
 
   onGuess = (id) => {
     const { score, points , guess} = this.state;
+
+    if(id !== this.state.choosen) {
+      this.setState((state) => {
+        return {...state, playing2: false}
+      })
+    } 
+
+
     if(guess === null) {
       const newScore = score + points;
 
@@ -226,6 +255,7 @@ class App extends Component {
         guess: id,
         choosen: id,
         score: newScore,
+        playing2: false
       }
       
       this.setState(() => {
@@ -237,7 +267,8 @@ class App extends Component {
       
         return {
           ...this.state,
-          choosen: id
+          choosen: id,
+          playing2: false
       }
       })
     }
@@ -255,7 +286,8 @@ class App extends Component {
         question: this.getRandomInt(0, 5),
         choosen: null,
         points: 5,
-        playing: false
+        playing: false,
+        playing2: false,
       })
     }
   }
@@ -307,13 +339,22 @@ class App extends Component {
     document.addEventListener('mouseup', mouseUp);
   }
 
-  render() {
-    
 
+  render() {
     const { stage, score, guess, } = this.state;
     let content;
     if(this.state.stage < 7) {
+      
+
       const { choosen, data, tries, question, playing, playing2 } = this.state;
+
+      
+
+      const dataS = data;
+      const dataStage = data[stage - 1];
+      const dataStageQuestion = dataStage[question];
+      const dataStageQuestionAudio =dataStageQuestion.audio
+
       const audioSource = data[stage - 1][question].audio;
       const correctAnswer = data[stage - 1][guess];
 
@@ -345,7 +386,9 @@ class App extends Component {
             playing={playing2}
             id={'playing2'}
             volume={this.onAudioChangeHandler}
-            data={data[stage - 1][choosen]}/>
+            data={data[stage - 1][choosen]}
+            width={100}
+            />
           </Container>
           <NextButton click={this.onNextButtonClickHanlder} success={guess}/>
         </>
@@ -359,7 +402,21 @@ class App extends Component {
     }
 
     if(stage === 7 && score === 30) {
-      content = <p> Вы прошли </p> 
+      content = (
+        <Ricardo> 
+          <p>
+          {
+            `
+            Поздравляю сладкий пупсик! \n
+            ЛГБТ Лобби Гордиться тобой! \n
+            Ты знаешь все наши любимые песни! \n
+            `
+          }
+          
+          </p>
+        </Ricardo> 
+      )
+      
     } 
 
     return (

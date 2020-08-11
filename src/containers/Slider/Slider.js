@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import Play from './play.svg';
 import Pause from './pause.svg';
 
+
 const Player = styled.div`
+  width: 100%;
   padding-top: 6px;
   padding-left: 2px;
   display: flex;
@@ -12,6 +14,7 @@ const Player = styled.div`
 `;
 
 const PlayerWrapper = styled.div`
+  width: 88.63%;;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -36,14 +39,14 @@ const PlayButton = styled.button`
 `;
 
 const Bar = styled.div`
-  min-width: ${props => props.width};
+  width: 100%;
   height: 4px;
   position: relative;
   background-color: rgb(115, 115, 115);
   `;
 
 const Progress = styled.div`
-  min-width: ${props => props.width};
+  min-width:  width: 100%;
   height: 4px;
 `;
 
@@ -78,16 +81,24 @@ const Time = styled.p`
 `;
 
 const Volume = styled.div`
-  width: 200px;
+  width: ${props => props.width ? "50%" : "20%"};
   height: 4px;
+  border: 1px solid green;
+
+  @media(max-width: 768px) {
+    width: 100%;
+  }
 `;
 const Level = styled.div`
-  width: 200px;
+  width: 100%;
   height: 4px;
   background-color: lightgreen`;
 
 export default class Slider extends Component {
   onLoadAudioHandler = e => {
+    this.props.progressReference.current.style.backgroundImage ='none';
+    this.props.progressReference.current.nextElementSibling.style.left ='0';
+    
     const duration = Math.floor(e.target.duration);
     const Target = e.target.nextElementSibling.nextElementSibling.lastChild.previousElementSibling.lastChild;
     const minutes = parseInt(duration / 60);
@@ -95,10 +106,11 @@ export default class Slider extends Component {
 
     const output = seconds.length === 1 ? `0` + minutes + ':0' + seconds : `0` + minutes + ':' + seconds
     Target.innerHTML = output;
+
+    
   }
 
   render() {
-    console.log(this.props);
     return (
       <Player>
         <Audio 
@@ -121,11 +133,10 @@ export default class Slider extends Component {
 
         <PlayerWrapper>
           
-          <Bar width={this.props.width}>
+          <Bar>
             <Progress ref={this.props.progressReference} />
             <Runner onMouseDown={
               (e) => {
-                console.log(e.target, 'e.target from arrow function')
                 const progressRef= this.props.progressReference,
                 audioRef=this.props.audioReference;
                 this.props.drag(e, progressRef, audioRef)}}/>
@@ -135,8 +146,8 @@ export default class Slider extends Component {
             <Time> 00.00 </Time>
             <Time> 00.00 </Time>
           </TimeContainer>
-          <Volume onMouseDown={(e) =>{ this.props.volume(e, this.props.audioReference)}}>
-            <Level/>
+          <Volume width={this.props.width} onMouseDown={(e) =>{ this.props.volume(e, this.props.audioReference)}}>
+            <Level width={this.props.width}/>
         </Volume>
         </PlayerWrapper>
       </Player>

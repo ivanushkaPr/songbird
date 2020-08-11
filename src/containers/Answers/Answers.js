@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-max-width: 540px;
+flex-basis: 50%;
 `;
 
 const Answers = styled.ul`
-min-width: 540px;
 padding-left: 0px;
 margin: 0px;
 `;

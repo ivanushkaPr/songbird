@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import image from './bird-mock.jpg';
+import image from './ricardo.jpg';
 const BirdImage = styled.img`
   border-radius: 10px;
-  max-height: 155px;
+  width: 200px;
+  height: 155px;
+
 `;
 
 export default class Question extends Component {

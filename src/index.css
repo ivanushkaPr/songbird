@@ -1,5 +1,7 @@
+
+
 body {
-  overflow: hidden;
+  white-space: pre-line;
   margin: 0;
   font-family: 'lato';
   -webkit-font-smoothing: antialiased;
@@ -11,3 +13,5 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+

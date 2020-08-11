@@ -4,10 +4,11 @@ import logo from './Logo.svg';
 
 
 const Container = styled.div`
-
+  width: 100%;
 `;
 
 const Panel = styled.div`
+  width: inherit;
   margin-top: 23px;
   margin-bottom: 5px;
   display: flex;
@@ -36,16 +37,24 @@ const Score = styled.h5`
 const Points = styled.span``;
 
 const Navigation = styled.nav`
-
+  width: 100%;
 `;
 
 const Menu = styled.ul`
+  width: 100%;
   overflow: hidden;
   border-radius: 5px;
   display: flex;
+  flex-wrap: wrap;
   padding-left: 0px;
   margin-top: 13px;
   margin-bottom: 25px;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+    
+  }
+
 `;
 
 const Category = styled.li`
@@ -55,6 +64,10 @@ const Category = styled.li`
   background-color: ${props => props.active ? ' #00bc8c;' : '#008966'};
   border-color: #007c5d;
   text-align: center;
+
+  @media (max-width: 768px) {
+    width: 200px;
+  }
 `;
 
 const Link = styled.a`
@@ -78,7 +91,7 @@ export default class Header extends Component {
 
          <Navigation>
            <Menu>
-             {['Разминка', 'Воробьиные', 'Лесные птицы', 'Певчие птицы', 'Хищные птицы', 'Морские птицы'].map((el, index, array) => {
+             {['Army of lovers', 'Boy George', 'Elton John', 'George Michael', 'Queen', 'YMCA'].map((el, index, array) => {
                const active = (this.props.stage - 1) === index ? true : false;
                return (
                 <Category active={active} key={index+el}>
